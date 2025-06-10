@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starfall - Official Rulebook</title>
+    <style>
+        /* CSS STYLES ARE EMBEDDED HERE */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulseGlowHeader {
+            0% { text-shadow: 0 0 5px #c89cff, 0 0 10px #c89cff, 0 0 15px #e0c8ff; }
+            50% { text-shadow: 0 0 10px #e0c8ff, 0 0 20px #e0c8ff, 0 0 30px #f0dfff; }
+            100% { text-shadow: 0 0 5px #c89cff, 0 0 10px #c89cff, 0 0 15px #e0c8ff; }
+        }
+
+        /* Adjusted background animation for corner gradient */
+        @keyframes cornerGradientShift {
+            0% { background-position: 0% 0%, 100% 100%; }
+            50% { background-position: 100% 0%, 0% 100%; }
+            100% { background-position: 0% 0%, 100% 100%; }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #e0e0e0; /* Light grey text */
+            background-color: #0c0014; /* Deepest black/purple fallback */
+            /* Corner gradients: one from top-left, one from bottom-right */
+            background-image:
+                radial-gradient(circle at 0% 0%, rgba(76, 0, 130, 0.7) 0%, transparent 50%), /* Purple from top-left */
+                radial-gradient(circle at 100% 100%, rgba(106, 0, 156, 0.6) 0%, transparent 50%), /* Purple from bottom-right */
+                linear-gradient(to bottom right, #0c0014, #1a001a); /* Base dark gradient */
+            background-size: 150% 150%, 150% 150%, 100% 100%; /* Make gradients larger to allow movement */
+            background-repeat: no-repeat;
+            animation: cornerGradientShift 45s ease-in-out infinite; /* Slower, smoother shift */
+            overflow-x: hidden;
+            min-height: 100vh; /* Ensure gradient covers full height */
+        }
+
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 25px 35px;
+            background-color: rgba(20, 0, 30, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(126, 0, 204, 0.6), 0 0 10px #c89cff inset;
+            animation: fadeIn 1s ease-out;
+            border: 1px solid rgba(197, 134, 192, 0.3);
+        }
+
+        h1, h2, h3 {
+            color: #d1acff;
+            margin-bottom: 0.75em;
+            transition: color 0.3s ease;
+        }
+        h1:hover, h2:hover, h3:hover {
+            color: #f0dfff;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.8em;
+            animation: pulseGlowHeader 4s infinite alternate, fadeIn 1.5s ease-out;
+            margin-bottom: 1em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 2px solid #6a009c;
+            padding-bottom: 0.3em;
+            animation: fadeIn 1.2s ease-out 0.2s backwards;
+        }
+        h2 .icon { margin-right: 10px; font-size: 0.9em; }
+
+
+        h3 {
+            font-size: 1.4em;
+            color: #e0c8ff;
+            animation: fadeIn 1.2s ease-out 0.4s backwards;
+        }
+        h3 .icon { margin-right: 8px; font-size: 0.8em;}
+
+
+        p, li {
+            margin-bottom: 0.8em;
+            animation: fadeIn 1.2s ease-out 0.6s backwards;
+        }
+
+        strong, .key-term {
+            color: #f0dfff;
+            font-weight: bold;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        strong:hover, .key-term:hover {
+            color: #ffffff;
+            text-shadow: 0 0 5px #f0dfff;
+        }
+
+
+        ul, ol {
+            padding-left: 20px;
+        }
+        li::marker {
+            color: #c89cff;
+        }
+
+
+        .quick-start-guide {
+            background-color: rgba(40, 0, 60, 0.85);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid #6a009c;
+            box-shadow: 0 0 10px rgba(106,0,156,0.5) inset;
+        }
+
+        .quick-start-guide h2 {
+            border-bottom: none;
+            text-align: center;
+            color: #e0c8ff;
+        }
+
+        nav#toc {
+            background-color: rgba(30,0,40,0.9);
+            padding: 10px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        nav#toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav#toc ul li {
+            display: inline-block;
+            margin: 5px 10px;
+        }
+        nav#toc ul li a {
+            color: #e0c8ff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+        nav#toc ul li a:hover {
+            background-color: #6a009c;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #2c003e; }
+        ::-webkit-scrollbar-thumb { background: #6a009c; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #9d4edd; }
+
+        footer {
+            text-align:center;
+            font-size:0.8em;
+            color: #705070;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #502050;
+        }
+
+        /* Section Reveal Animation */
+        .animated-section {
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animated-section.visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌌 Starfall: Official Rulebook 📜</h1>
+
+        <nav id="toc">
+            <ul>
+                <li><a href="#quick-start">🚀 Quick Start</a></li>
+                <li><a href="#detailed-rules">📖 Detailed Rules</a></li>
+                <li><a href="#objective-section">🎯 Objective</a></li>
+                <li><a href="#terms-section">🔑 Key Terms</a></li>
+                <li><a href="#setup-section">⚙️ Setup</a></li>
+                <li><a href="#turn-sequence-section">🔄 Turn Sequence</a></li>
+                <li><a href="#playing-cards-chain-section">🃏 Playing Cards & Chain</a></li>
+                <li><a href="#special-rules-section">✨ Special Rules</a></li>
+            </ul>
+        </nav>
+
+        <section id="quick-start" class="quick-start-guide animated-section">
+            <h2><span class="icon">🚀</span> Quick Start Guide (For Your First Game!)</h2>
+            <p>Welcome to Starfall! This guide will get you playing quickly.</p>
+
+            <h3><span class="icon">🏆</span> 1. What's the Goal?</h3>
+            <p>Be the first to either:</p>
+            <ul>
+                <li>Build <strong>3 Complete Solar Systems</strong> in your <strong class="key-term">Star Chart</strong> (the area in front of you).</li>
+                <li>Play all <strong>3 special "Supernova" cards</strong> from your hand at once.</li>
+            </ul>
+
+            <h3><span class="icon">덱</span> 2. What's in the Deck?</h3>
+            <ul>
+                <li><strong class="key-term">Star Cards:</strong> 🌟 Big suns! You play these first. They say how many "Discoveries" they need.</li>
+                <li><strong class="key-term">Discovery Cards:</strong> 🪐 Planets, comets, etc. You attach these to your Stars.</li>
+                <li><strong class="key-term">Miracle Cards:</strong> ✨ Good for you! One-time powerful effects. (The 3 Supernovas are special Miracle cards for winning).</li>
+                <li><strong class="key-term">Disaster Cards:</strong> 💥 Bad for your opponents! One-time disruptive effects.</li>
+            </ul>
+
+            <h3><span class="icon">🛠️</span> 3. Setting Up</h3>
+            <ul>
+                <li>Shuffle the big deck of cards.</li>
+                <li>Deal 5 cards to each player.</li>
+                <li>Player to the dealer's left goes first, then play goes clockwise.</li>
+            </ul>
+
+            <h3><span class="icon">🎮</span> 4. Your Turn (The Basics)</h3>
+            <p>Each turn, you do these things in order:</p>
+            <ol>
+                <li><strong>Draw:</strong> Take 1 card from the deck.</li>
+                <li><strong>Action Phase (Playing Cards):</strong>
+                    <ul>
+                        <li><strong>Can I Play?</strong> If you have <strong>6 or more cards</strong> in your hand, you can start playing cards!</li>
+                        <li><strong>What Can I Do?</strong> You can keep playing cards from your hand (Stars, Discoveries, Miracles, Disasters, or even whole Solar Systems) one by one, as long as you still have 6 or more cards <em>before</em> you play each card.</li>
+                        <li>Once you drop to 5 cards (or fewer) in hand after playing a card, your Action Phase for playing cards from hand ends.</li>
+                        <li><strong>If you start your Action Phase with 5 or fewer cards (after drawing), you cannot play any cards from your hand this turn.</strong></li>
+                    </ul>
+                </li>
+                <li><strong>End Your Turn:</strong>
+                    <ul>
+                        <li><strong>Hand Size Check (Again):</strong> You should already be at 5 or fewer cards if you played any. If you didn't play any cards and have more than 5 (e.g. from a special card effect that let you draw many), discard extras to the bottom of the deck until you have 5.</li>
+                        <li><strong>Check for Win:</strong> Did you meet a win condition? If yes, you win!</li>
+                        <li>Pass the turn to your left.</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h3><span class="icon">☀️</span> 5. Building a Solar System</h3>
+            <ul>
+                <li>A Star card has a "Class" number (e.g., Class 3). This means it needs that many Discovery cards.</li>
+                <li>You play Stars and attach Discoveries to them in your <strong class="key-term">Star Chart</strong>.</li>
+                <li>Once a Star has the right number of Discoveries, its Solar System is "Complete"!</li>
+            </ul>
+
+            <h3><span class="icon">⛓️</span> 6. Playing Cards Off-Turn (Reactions/Chains)</h3>
+            <p>Even if it's not your turn, if someone plays a card, you might be able to play a <strong>Miracle or Disaster card</strong> from your hand to react! This is called a <strong class="key-term">Chain</strong>. Ask experienced players for details!</p>
+            <p><em>(Once you've played a game or two, read the Detailed Rules for how "Chains" work and the specifics of winning.)</em></p>
+        </section>
+
+        <hr style="border: 1px solid #6a009c; margin: 40px 0;">
+
+        <section id="detailed-rules" class="animated-section">
+            <h2><span class="icon">📖</span> Starfall: Detailed Rulebook</h2>
+
+            <section id="objective-section" class="animated-section">
+                <h3><span class="icon">🎯</span> 1. Game Objective</h3>
+                <p>Be the first player to achieve one of two victory conditions:</p>
+                <ul>
+                    <li><strong class="key-term">Astronomical Domination:</strong> Control three complete Solar Systems in your <strong class="key-term">Star Chart</strong> at the end of your turn.</li>
+                    <li><strong class="key-term">Cosmic Cataclysm:</strong> Successfully play all three unique "Supernova" Miracle cards (Fusion, Gravity, Gas) from your hand. This can be done during your Action Phase or as a reaction in a <strong class="key-term">Chain</strong>.</li>
+                </ul>
+            </section>
+
+            <section id="terms-section" class="animated-section">
+                <h3><span class="icon">🔑</span> 2. Components & Key Terms</h3>
+                <ul>
+                    <li><strong class="key-term">Main Deck:</strong> The 81-card shared deck.</li>
+                    <li><strong>Card Types:</strong>
+                        <ul>
+                            <li><strong class="key-term">Star Cards:</strong> 🌟 The foundation of a Solar System. Each has a Class value, determining Discovery cards needed. Played into your <strong class="key-term">Star Chart</strong>.</li>
+                            <li><strong class="key-term">Discovery Cards:</strong> 🪐 Represent planets, comets, asteroids. Attached to Star cards in a <strong class="key-term">Star Chart</strong>. Cannot be played alone.</li>
+                            <li><strong class="key-term">Miracle Cards:</strong> ✨ Powerful, one-time positive effects or unique actions. Resolve after any <strong class="key-term">Chain</strong>, then placed bottom of Main Deck.
+                                <ul>
+                                    <li><strong class="key-term">Supernova Cards (Fusion, Gravity, Gas):</strong> Unique Miracle cards for the Cosmic Cataclysm victory.</li>
+                                </ul>
+                            </li>
+                            <li><strong class="key-term">Disaster Cards:</strong> 💥 Powerful, one-time disruptive effects. Resolve after any <strong class="key-term">Chain</strong>, then placed bottom of Main Deck.</li>
+                        </ul>
+                    </li>
+                    <li><strong class="key-term">Star Chart:</strong> Your face-up play area for Stars, attached Discoveries, and completed Solar Systems.</li>
+                    <li><strong class="key-term">Hand:</strong> Private cards held. End-of-turn limit is 5.</li>
+                    <li><strong class="key-term">Destroy:</strong> Card goes to the bottom of the Main Deck from Star Chart or hand (if specified).</li>
+                    <li><strong class="key-term">Complete a Solar System:</strong> 1 Star Card + Discovery Cards equal to Star's "Class" in a Star Chart.</li>
+                    <li><strong class="key-term">Chain:</strong> Sequence of reactively played Miracle/Disaster cards, resolving in reverse (LIFO).</li>
+                    <li><strong class="key-term">Chain Link (CL):</strong> Each card in a <strong class="key-term">Chain</strong>. CL1 is the initial play being responded to.</li>
+                </ul>
+            </section>
+
+            <section id="setup-section" class="animated-section">
+                <h3><span class="icon">⚙️</span> 3. Game Setup</h3>
+                <ol>
+                    <li>Shuffle the 81-card Main Deck, place face down.</li>
+                    <li>Choose a dealer. Player to dealer's left is first.</li>
+                    <li>Deal 5 cards to each player.</li>
+                </ol>
+            </section>
+
+            <section id="turn-sequence-section" class="animated-section">
+                <h3><span class="icon">🔄</span> 4. Player Turn Sequence</h3>
+                <p>Play proceeds clockwise. A turn has three phases:</p>
+                <ul>
+                    <li><strong>Phase 1: Start & Draw Phase (Automatic)</strong>
+                        <ol>
+                            <li>At turn start, draw 1 card from Main Deck.</li>
+                            <li>Check for start-of-turn effects (e.g., rotation tracking).</li>
+                        </ol>
+                    </li>
+                    <li><strong>Phase 2: Action Phase (Playing Cards from Hand)</strong>
+                        <ol>
+                            <li><strong>Check Hand Size:</strong> After drawing, must have <strong>6+ cards</strong> to play cards. If 5 or fewer, skip to End Phase.</li>
+                            <li><strong>Playing Multiple Cards:</strong> If 6+ cards, you may make one "play" (a card or predefined group).
+                                <ul>
+                                    <li>After this play (and any <strong class="key-term">Chain</strong>) resolves, if still 6+ cards, you may make another play.</li>
+                                    <li>Continue making plays one-by-one while 6+ cards <em>before each play</em>.</li>
+                                    <li>If a play drops hand to 5 or fewer, no more plays this Action Phase.</li>
+                                </ul>
+                            </li>
+                            <li>Each play may start a <strong class="key-term">Chain</strong> (Sec 5). Played card(s) resolve after any <strong class="key-term">Chain</strong>.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Phase 3: End Phase</strong>
+                        <ol>
+                            <li><strong>Discard (if needed):</strong> If >5 cards (due to unusual effects), discard to 5. Discards go to bottom of Main Deck. (Normally, Action Phase rules leave you at ≤5 cards).</li>
+                            <li><strong>Check for Victory:</strong> If a victory condition met, announce it. You win!</li>
+                            <li>Check for end-of-turn effects (e.g., rotation tracking).</li>
+                            <li>Turn ends. Play passes left.</li>
+                        </ol>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="playing-cards-chain-section" class="animated-section">
+                <h3><span class="icon">🃏</span> 5. Playing Cards & The <strong class="key-term">Chain</strong></h3>
+                <ul>
+                    <li><strong>General Play from Hand (During Your Action Phase):</strong>
+                        <p>If 6+ card hand size met, a "play" can be:</p>
+                        <ul>
+                            <li><strong>Playing a Star Card:</strong> Place into your <strong class="key-term">Star Chart</strong>.</li>
+                            <li><strong>Playing a Discovery Card:</strong> Attach to an incomplete Star in your <strong class="key-term">Star Chart</strong>.</li>
+                            <li><strong>Playing a Miracle or Disaster Card:</strong> Announce it.</li>
+                            <li><strong>Playing a Complete Solar System:</strong> Play 1 Star + required Discoveries from hand into <strong class="key-term">Star Chart</strong>.</li>
+                            <li><strong>Playing Supernova Miracle Cards for Victory:</strong> If you hold all three, play simultaneously. If successful, you win. Meets Cosmic Cataclysm.</li>
+                        </ul>
+                    </li>
+                    <li><strong>The <strong class="key-term">Chain</strong> and Reactive Play (Miracle & Disaster Cards ONLY):</strong>
+                        <ul>
+                            <li><strong>Starting a <strong class="key-term">Chain</strong>:</strong> Active player's play (CL1) doesn't resolve immediately. Opportunity for reactions.</li>
+                            <li><strong>Responding:</strong> Opponents (in turn order, left of active player first) may play <strong>one Miracle or Disaster card</strong> to respond. This is CL2, etc.
+                                <ul>
+                                    <li><strong>Only Miracle or Disaster cards in a <strong class="key-term">Chain</strong>.</strong> No Stars, Discoveries, or Systems.</li>
+                                    <li>Hand size (6-card rule) <strong>does not restrict</strong> reactive plays.</li>
+                                </ul>
+                            </li>
+                            <li><strong>Continuing the <strong class="key-term">Chain</strong>:</strong> Priority passes for more reactions until all pass consecutively.</li>
+                            <li><strong>Resolving the <strong class="key-term">Chain</strong>:</strong> Resolves LIFO (last card played resolves first, down to CL1).</li>
+                            <li><strong>Important:</strong> No new plays/Chains while a <strong class="key-term">Chain</strong> is resolving.</li>
+                            <li><strong>Card Destination:</strong> Chained Miracles/Disasters go to bottom of Main Deck after resolving (unless text says otherwise).</li>
+                            <li><strong>Impact on Hand Size:</strong> Reactive plays reduce hand size, possibly affecting your next Action Phase if hand drops below 6 after your draw. You don't "miss turns" (skip phases).</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="special-rules-section" class="animated-section">
+                <h3><span class="icon">✨</span> 6. Special Rules & Card Effects</h3>
+                <ul>
+                    <li><strong>Tracking Limited-Duration Effects (e.g., an effect lasting "for two turns"):</strong>
+                        <p>Use the card (or token) as a reminder near affected player/cards.</p>
+                        <ol>
+                            <li><strong>Activation:</strong> Effect resolves, reminder upright. Effect active.</li>
+                            <li><strong>End of Affected Entity's 1st Full Turn After Activation:</strong> Rotate reminder 90°. Effect continues.</li>
+                            <li><strong>End of Affected Entity's 2nd Full Turn After Activation:</strong> Effect expires. Remove reminder (e.g., card to bottom of Main Deck).</li>
+                        </ol>
+                    </li>
+                </ul>
+            </section>
+        </section>
+
+        <footer>
+            <p>Starfall Game Rules &copy; [Your Name/Company Name] [Current Year]</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for Table of Contents
+            const tocLinks = document.querySelectorAll('#toc a');
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Intersection Observer for section reveal animations
+            const animatedSections = document.querySelectorAll('.animated-section');
+            const observerOptions = {
+                root: null, 
+                rootMargin: '0px',
+                threshold: 0.1 
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // observer.unobserve(entry.target); // Optional: unobserve after first animation
+                    }
+                });
+            }, observerOptions);
+
+            animatedSections.forEach(section => {
+                observer.observe(section);
+            });
+
+            console.log("Starfall Rules page loaded. Animations active.");
+        });
+    </script>
+</body>
+</html>
