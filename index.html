@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Starfall - Official Rulebook</title>
     <style>
-        /* CSS STYLES ARE EMBEDDED HERE (Same as your preferred version) */
+        /* CSS STYLES ARE EMBEDDED HERE */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -17,30 +17,15 @@
             100% { text-shadow: 0 0 5px #c89cff, 0 0 10px #c89cff, 0 0 15px #e0c8ff; }
         }
 
-        @keyframes backgroundStars {
-            0% { background-position: 0 0; }
-            100% { background-position: -1000px 500px; }
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
             color: #e0e0e0;
-            background-color: #0d021a;
-            background-image:
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90" fill="%232a0d3b">✨</text></svg>'),
-                linear-gradient(270deg, #1a001a, #2c003e, #1a001a, #3d005a);
-            background-size: 100px 100px, 600% 600%;
-            animation: backgroundStars 120s linear infinite, backgroundShift 30s ease infinite;
+            /* REMOVED animated background, replaced with solid color */
+            background-color: #1a001a; 
             overflow-x: hidden;
-        }
-
-        @keyframes backgroundShift {
-            0% { background-position: 0% 50%, 0% 50%; }
-            50% { background-position: 100% 50%, 100% 50%; }
-            100% { background-position: 0% 50%, 0% 50%; }
         }
 
         .container {
@@ -75,20 +60,17 @@
             font-size: 1.8em;
             border-bottom: 2px solid #6a009c;
             padding-bottom: 0.3em;
-            animation: fadeIn 1.2s ease-out 0.2s backwards;
         }
         h2 .icon { margin-right: 10px; font-size: 0.9em; }
 
         h3 {
             font-size: 1.4em;
             color: #e0c8ff;
-            animation: fadeIn 1.2s ease-out 0.4s backwards;
         }
         h3 .icon { margin-right: 8px; font-size: 0.8em;}
 
         p, li {
             margin-bottom: 0.8em;
-            animation: fadeIn 1.2s ease-out 0.6s backwards;
         }
 
         strong, .key-term {
@@ -106,6 +88,27 @@
         }
         li::marker {
             color: #c89cff;
+        }
+        
+        #card-list ul {
+            list-style-type: none; /* Remove bullets for card list */
+            padding-left: 0;
+        }
+
+        #card-list li {
+            background-color: rgba(0,0,0,0.2);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #9d4edd;
+        }
+
+        #card-list .card-effect {
+            font-style: italic;
+            color: #c0c0c0;
+            display: block;
+            margin-top: 8px;
+            font-size: 0.95em;
         }
 
         .quick-start-guide {
@@ -188,12 +191,7 @@
             <ul>
                 <li><a href="#quick-start">🚀 Quick Start</a></li>
                 <li><a href="#detailed-rules">📖 Detailed Rules</a></li>
-                <li><a href="#objective-section">🎯 Objective</a></li>
-                <li><a href="#terms-section">🔑 Key Terms</a></li>
-                <li><a href="#setup-section">⚙️ Setup</a></li>
-                <li><a href="#turn-sequence-section">🔄 Turn Sequence</a></li>
-                <li><a href="#playing-cards-chain-section">🃏 Playing Cards & Chain</a></li>
-                <li><a href="#special-rules-section">✨ Special Rules</a></li>
+                <li><a href="#card-list">📇 Card List</a></li>
             </ul>
         </nav>
 
@@ -274,11 +272,11 @@
             <section id="terms-section" class="animated-section">
                 <h3><span class="icon">🔑</span> 2. Components & Key Terms</h3>
                 <ul>
-                    <li><strong class="key-term">Main Deck:</strong> The shared deck of cards (typically 80-90 cards).</li>
+                    <li><strong class="key-term">Main Deck:</strong> The shared deck of cards (currently 90 cards).</li>
                     <li><strong>Card Types:</strong>
                         <ul>
-                            <li><strong class="key-term">Star Cards:</strong> 🌟 The foundation of a Solar System. Each has a Class value, determining Discovery cards needed. Played into your <strong class="key-term">Star Chart</strong>.</li>
-                            <li><strong class="key-term">Discovery Cards:</strong> 🪐 Represent planets, comets, asteroids. Attached to Star cards in a <strong class="key-term">Star Chart</strong>. Cannot be played alone.</li>
+                            <li><strong class="key-term">Star Cards:</strong> 🌟 The foundation of a Solar System. Each has a Class value, which determines how many Discovery cards are needed to complete its system. Played into your <strong class="key-term">Star Chart</strong>.</li>
+                            <li><strong class="key-term">Discovery Cards:</strong> 🪐 Represent planets, comets, asteroids. Attached to Star cards in a <strong class="key-term">Star Chart</strong>. Cannot be played by themselves.</li>
                             <li><strong class="key-term">Miracle Cards:</strong> ✨ Powerful, one-time effects. Resolve after any <strong class="key-term">Chain</strong>, then placed bottom of Main Deck.
                                 <ul>
                                     <li><strong class="key-term">Supernova Cards (Fusion, Gravity, Gas):</strong> Unique Miracle cards for the Cosmic Cataclysm victory.</li>
@@ -387,9 +385,62 @@
                 </ul>
             </section>
         </section>
+        
+        <hr style="border: 1px solid #6a009c; margin: 40px 0;">
+
+        <section id="card-list" class="animated-section">
+            <h2><span class="icon">📇</span> Starfall: Complete Card List & Distribution (90 Cards)</h2>
+            <p>This is the complete list of all 28 unique cards and their quantities in the 90-card deck.</p>
+
+            <h3 class="animated-section"><span class="icon">🌟</span> I. Star Cards (23 Total)</h3>
+            <ul>
+                <li><strong>Proto-Star</strong> (Special Action Play) - <strong>3 copies</strong><span class="card-effect">Effect: Cannot build a system. When played: Choose one, then shuffle Proto-Star into Main Deck: Draw 2 cards OR Search Main Deck for one "White Dwarf"; put it into your Star Chart. Shuffle Main Deck.</span></li>
+                <li><strong>Yellow Dwarf</strong> (Star, Class 4) - <strong>3 copies</strong></li>
+                <li><strong>Red Giant</strong> (Star, Class 5) - <strong>3 copies</strong></li>
+                <li><strong>Red Supergiant</strong> (Star, Class 6) - <strong>2 copies</strong></li>
+                <li><strong>White Dwarf</strong> (Star, Class 3) - <strong>3 copies</strong></li>
+                <li><strong>Red Dwarf</strong> (Star, Class 2) - <strong>4 copies</strong></li>
+                <li><strong>Brown Dwarf</strong> (Star, Class 2) - <strong>5 copies</strong></li>
+            </ul>
+
+            <h3 class="animated-section"><span class="icon">🪐</span> II. Discovery Cards (25 Total)</h3>
+            <ul>
+                <li><strong>Asteroid Belt</strong> (Discovery) - <strong>5 copies</strong></li>
+                <li><strong>Dwarf Planet</strong> (Discovery) - <strong>5 copies</strong></li>
+                <li><strong>Rocky Planet</strong> (Discovery) - <strong>5 copies</strong><span class="card-effect">Referenced by Planet of Life.</span></li>
+                <li><strong>Gas Giant</strong> (Discovery) - <strong>5 copies</strong><span class="card-effect">Referenced by Athena & Ignition.</span></li>
+                <li><strong>Comet</strong> (Discovery) - <strong>5 copies</strong></li>
+            </ul>
+
+            <h3 class="animated-section"><span class="icon">✨</span> III. Miracle Cards (20 Total)</h3>
+            <ul>
+                <li><strong>Supernova - Fusion / Gravity / Gas</strong> (Victory Component) - <strong>2 copies of each</strong><span class="card-effect">Effect: Play only if you hold all three unique Supernovas. If played together (as one play), you win the game.</span></li>
+                <li><strong>Cosmic Denial</strong> (Miracle) - <strong>4 copies</strong><span class="card-effect">Effect: Negate a Miracle or Disaster card. Destroy the negated card.</span></li>
+                <li><strong>Ignition</strong> (Miracle) - <strong>2 copies</strong><span class="card-effect">Effect: Choose one: Destroy target 'Gas Giant' in an opponent's Star Chart. Then, search deck for 'Yellow Dwarf', add to hand. OR Target opponent reveals hand. If a 'Gas Giant' is present, choose one; place it on bottom of Main Deck. Then, search deck for 'Yellow Dwarf', add to hand.</span></li>
+                <li><strong>Astral Projection</strong> (Miracle) - <strong>2 copies</strong><span class="card-effect">Effect: Target opponent reveals hand. This effect lasts 2 of their turns (track with this card/token). Revealed hand cards can be targeted by effects that normally target cards in a Star Chart.</span></li>
+                <li><strong>Pot of Stars</strong> (Miracle) - <strong>5 copies</strong><span class="card-effect">Effect: Draw 2 cards.</span></li>
+                <li><strong>Wormhole</strong> (Miracle) - <strong>2 copies</strong><span class="card-effect">Effect: Choose one: Target opponent: Add 1 random card from their hand to yours. OR Target opponent: Take up to 2 Star/Discovery cards from their Star Chart into yours (attach legally if possible, else add to hand).</span></li>
+            </ul>
+
+            <h3 class="animated-section"><span class="icon">🔗</span> IV. Enhancement Cards (8 Total)</h3>
+            <ul>
+                <li><strong>Solar Eclipse</strong> (Attaches) - <strong>4 copies</strong><span class="card-effect">Effect: Play by attaching to one of your completed Solar Systems. As long as it remains attached, that system has permanent protection from negative card effects.</span></li>
+                <li><strong>Planet of Life</strong> (Attaches) - <strong>4 copies</strong><span class="card-effect">Effect: Play by attaching to a "Rocky Planet". Does not count for system completion. If the host "Rocky Planet" is destroyed, this is also destroyed. Once per your turn (with a one-turn cooldown), you may target an opponent; they reveal their hand to you.</span></li>
+            </ul>
+
+            <h3 class="animated-section"><span class="icon">💥</span> V. Disaster Cards (14 Total)</h3>
+            <ul>
+                <li><strong>Black Hole</strong> (Disaster) - <strong>2 copies</strong><span class="card-effect">Effect: Each player shuffles all Hand & Star Chart cards into Main Deck. You skip your next three turns.</span></li>
+                <li><strong>Athena</strong> (Disaster) - <strong>3 copies</strong><span class="card-effect">Effect: Choose one: Destroy target 'Asteroid Belt', 'Planet', or 'Comet' in an opponent's Star Chart. OR, if opponent controls a 'Gas Giant': Return it to their hand.</span></li>
+                <li><strong>Pulsar</strong> (Disaster) - <strong>2 copies</strong><span class="card-effect">Effect: Shuffle your Hand & Star Chart cards into Main Deck. Draw that many cards.</span></li>
+                <li><strong>Dark Matter Void</strong> (Disaster) - <strong>2 copies</strong><span class="card-effect">Effect: Choose one Star Class value. Until the start of your next turn, no Star cards of the chosen Class can be played.</span></li>
+                <li><strong>Quantum Entanglement Failure</strong> (Disaster) - <strong>2 copies</strong><span class="card-effect">Effect: Choose two different target players. They each select one card from their hand at random and must swap them.</span></li>
+                <li><strong>Stellar Nursery Collapse</strong> (Disaster) - <strong>2 copies</strong><span class="card-effect">Effect: Shuffle the Main Deck. Then, reveal the top 5 cards and place them on the bottom of the Main Deck.</span></li>
+            </ul>
+        </section>
 
         <footer>
-            <p>Starfall Game Rules © Riley Horsham 2025</p>
+            <p>Starfall Game Rules © [Your Name/Company Name] [Current Year]</p>
         </footer>
     </div>
 
@@ -403,7 +454,9 @@
                     const targetId = this.getAttribute('href').substring(1);
                     const targetElement = document.getElementById(targetId);
                     if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                        setTimeout(() => {
+                           targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }, 0);
                     }
                 });
             });
@@ -420,7 +473,6 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        // observer.unobserve(entry.target); // Optional: unobserve after first time
                     }
                 });
             }, observerOptions);
