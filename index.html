@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Starfall - Official Rulebook</title>
     <style>
-        /* CSS STYLES ARE EMBEDDED HERE */
+        /* CSS STYLES ARE EMBEDDED HERE (Same as your preferred version) */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -17,11 +17,9 @@
             100% { text-shadow: 0 0 5px #c89cff, 0 0 10px #c89cff, 0 0 15px #e0c8ff; }
         }
 
-        /* Adjusted background animation for corner gradient */
-        @keyframes cornerGradientShift {
-            0% { background-position: 0% 0%, 100% 100%; }
-            50% { background-position: 100% 0%, 0% 100%; }
-            100% { background-position: 0% 0%, 100% 100%; }
+        @keyframes backgroundStars {
+            0% { background-position: 0 0; }
+            100% { background-position: -1000px 500px; }
         }
 
         body {
@@ -29,18 +27,20 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            color: #e0e0e0; /* Light grey text */
-            background-color: #0c0014; /* Deepest black/purple fallback */
-            /* Corner gradients: one from top-left, one from bottom-right */
+            color: #e0e0e0;
+            background-color: #0d021a;
             background-image:
-                radial-gradient(circle at 0% 0%, rgba(76, 0, 130, 0.7) 0%, transparent 50%), /* Purple from top-left */
-                radial-gradient(circle at 100% 100%, rgba(106, 0, 156, 0.6) 0%, transparent 50%), /* Purple from bottom-right */
-                linear-gradient(to bottom right, #0c0014, #1a001a); /* Base dark gradient */
-            background-size: 150% 150%, 150% 150%, 100% 100%; /* Make gradients larger to allow movement */
-            background-repeat: no-repeat;
-            animation: cornerGradientShift 45s ease-in-out infinite; /* Slower, smoother shift */
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90" fill="%232a0d3b">✨</text></svg>'),
+                linear-gradient(270deg, #1a001a, #2c003e, #1a001a, #3d005a);
+            background-size: 100px 100px, 600% 600%;
+            animation: backgroundStars 120s linear infinite, backgroundShift 30s ease infinite;
             overflow-x: hidden;
-            min-height: 100vh; /* Ensure gradient covers full height */
+        }
+
+        @keyframes backgroundShift {
+            0% { background-position: 0% 50%, 0% 50%; }
+            50% { background-position: 100% 50%, 100% 50%; }
+            100% { background-position: 0% 50%, 0% 50%; }
         }
 
         .container {
@@ -79,14 +79,12 @@
         }
         h2 .icon { margin-right: 10px; font-size: 0.9em; }
 
-
         h3 {
             font-size: 1.4em;
             color: #e0c8ff;
             animation: fadeIn 1.2s ease-out 0.4s backwards;
         }
         h3 .icon { margin-right: 8px; font-size: 0.8em;}
-
 
         p, li {
             margin-bottom: 0.8em;
@@ -103,14 +101,12 @@
             text-shadow: 0 0 5px #f0dfff;
         }
 
-
         ul, ol {
             padding-left: 20px;
         }
         li::marker {
             color: #c89cff;
         }
-
 
         .quick-start-guide {
             background-color: rgba(40, 0, 60, 0.85);
@@ -159,7 +155,6 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* Scrollbar styling */
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #2c003e; }
         ::-webkit-scrollbar-thumb { background: #6a009c; border-radius: 5px; }
@@ -174,7 +169,6 @@
             border-top: 1px solid #502050;
         }
 
-        /* Section Reveal Animation */
         .animated-section {
             opacity: 0;
             transform: scale(0.95) translateY(20px);
@@ -184,7 +178,6 @@
             opacity: 1;
             transform: scale(1) translateY(0);
         }
-
     </style>
 </head>
 <body>
@@ -220,6 +213,7 @@
                 <li><strong class="key-term">Star Cards:</strong> 🌟 Big suns! You play these first. They say how many "Discoveries" they need.</li>
                 <li><strong class="key-term">Discovery Cards:</strong> 🪐 Planets, comets, etc. You attach these to your Stars.</li>
                 <li><strong class="key-term">Miracle Cards:</strong> ✨ Good for you! One-time powerful effects. (The 3 Supernovas are special Miracle cards for winning).</li>
+                <li><strong class="key-term">Enhancement Cards:</strong> 🔗 Special cards that attach to things in your Star Chart for lasting effects!</li>
                 <li><strong class="key-term">Disaster Cards:</strong> 💥 Bad for your opponents! One-time disruptive effects.</li>
             </ul>
 
@@ -237,14 +231,14 @@
                 <li><strong>Action Phase (Playing Cards):</strong>
                     <ul>
                         <li><strong>Can I Play?</strong> If you have <strong>6 or more cards</strong> in your hand, you can start playing cards!</li>
-                        <li><strong>What Can I Do?</strong> You can keep playing cards from your hand (Stars, Discoveries, Miracles, Disasters, or even whole Solar Systems) one by one, as long as you still have 6 or more cards <em>before</em> you play each card.</li>
+                        <li><strong>What Can I Do?</strong> You can keep playing cards from your hand (Stars, Discoveries, Miracles, Enhancements, Disasters, or even whole Solar Systems) one by one, as long as you still have 6 or more cards <em>before</em> you play each card.</li>
                         <li>Once you drop to 5 cards (or fewer) in hand after playing a card, your Action Phase for playing cards from hand ends.</li>
                         <li><strong>If you start your Action Phase with 5 or fewer cards (after drawing), you cannot play any cards from your hand this turn.</strong></li>
                     </ul>
                 </li>
                 <li><strong>End Your Turn:</strong>
                     <ul>
-                        <li><strong>Hand Size Check (Again):</strong> You should already be at 5 or fewer cards if you played any. If you didn't play any cards and have more than 5 (e.g. from a special card effect that let you draw many), discard extras to the bottom of the deck until you have 5.</li>
+                        <li><strong>Hand Size Check (Again):</strong> You should already be at 5 or fewer cards if you played any. If you didn't play any cards and have more than 5, discard extras to the bottom of the deck until you have 5.</li>
                         <li><strong>Check for Win:</strong> Did you meet a win condition? If yes, you win!</li>
                         <li>Pass the turn to your left.</li>
                     </ul>
@@ -259,7 +253,7 @@
             </ul>
 
             <h3><span class="icon">⛓️</span> 6. Playing Cards Off-Turn (Reactions/Chains)</h3>
-            <p>Even if it's not your turn, if someone plays a card, you might be able to play a <strong>Miracle or Disaster card</strong> from your hand to react! This is called a <strong class="key-term">Chain</strong>. Ask experienced players for details!</p>
+            <p>Even if it's not your turn, if someone plays a card, you might be able to play a <strong>Miracle, Disaster, or even an Enhancement card</strong> from your hand to react! This is called a <strong class="key-term">Chain</strong>. Ask experienced players for details!</p>
             <p><em>(Once you've played a game or two, read the Detailed Rules for how "Chains" work and the specifics of winning.)</em></p>
         </section>
 
@@ -280,24 +274,25 @@
             <section id="terms-section" class="animated-section">
                 <h3><span class="icon">🔑</span> 2. Components & Key Terms</h3>
                 <ul>
-                    <li><strong class="key-term">Main Deck:</strong> The 81-card shared deck.</li>
+                    <li><strong class="key-term">Main Deck:</strong> The shared deck of cards (typically 80-90 cards).</li>
                     <li><strong>Card Types:</strong>
                         <ul>
                             <li><strong class="key-term">Star Cards:</strong> 🌟 The foundation of a Solar System. Each has a Class value, determining Discovery cards needed. Played into your <strong class="key-term">Star Chart</strong>.</li>
                             <li><strong class="key-term">Discovery Cards:</strong> 🪐 Represent planets, comets, asteroids. Attached to Star cards in a <strong class="key-term">Star Chart</strong>. Cannot be played alone.</li>
-                            <li><strong class="key-term">Miracle Cards:</strong> ✨ Powerful, one-time positive effects or unique actions. Resolve after any <strong class="key-term">Chain</strong>, then placed bottom of Main Deck.
+                            <li><strong class="key-term">Miracle Cards:</strong> ✨ Powerful, one-time effects. Resolve after any <strong class="key-term">Chain</strong>, then placed bottom of Main Deck.
                                 <ul>
                                     <li><strong class="key-term">Supernova Cards (Fusion, Gravity, Gas):</strong> Unique Miracle cards for the Cosmic Cataclysm victory.</li>
                                 </ul>
                             </li>
+                            <li><strong class="key-term">Enhancement Cards:</strong> 🔗 Special cards that attach to other cards (usually in a <strong class="key-term">Star Chart</strong>) to provide persistent effects or abilities. Subject to specific play requirements on the card. May be played into a <strong class="key-term">Chain</strong>.</li>
                             <li><strong class="key-term">Disaster Cards:</strong> 💥 Powerful, one-time disruptive effects. Resolve after any <strong class="key-term">Chain</strong>, then placed bottom of Main Deck.</li>
                         </ul>
                     </li>
-                    <li><strong class="key-term">Star Chart:</strong> Your face-up play area for Stars, attached Discoveries, and completed Solar Systems.</li>
+                    <li><strong class="key-term">Star Chart:</strong> Your face-up play area for Stars, attached Discoveries, Enhancements, and completed Solar Systems.</li>
                     <li><strong class="key-term">Hand:</strong> Private cards held. End-of-turn limit is 5.</li>
                     <li><strong class="key-term">Destroy:</strong> Card goes to the bottom of the Main Deck from Star Chart or hand (if specified).</li>
                     <li><strong class="key-term">Complete a Solar System:</strong> 1 Star Card + Discovery Cards equal to Star's "Class" in a Star Chart.</li>
-                    <li><strong class="key-term">Chain:</strong> Sequence of reactively played Miracle/Disaster cards, resolving in reverse (LIFO).</li>
+                    <li><strong class="key-term">Chain:</strong> Sequence of reactively played Miracle, Disaster, or Enhancement cards, resolving in reverse (LIFO).</li>
                     <li><strong class="key-term">Chain Link (CL):</strong> Each card in a <strong class="key-term">Chain</strong>. CL1 is the initial play being responded to.</li>
                 </ul>
             </section>
@@ -305,7 +300,7 @@
             <section id="setup-section" class="animated-section">
                 <h3><span class="icon">⚙️</span> 3. Game Setup</h3>
                 <ol>
-                    <li>Shuffle the 81-card Main Deck, place face down.</li>
+                    <li>Shuffle the Main Deck and place it face down.</li>
                     <li>Choose a dealer. Player to dealer's left is first.</li>
                     <li>Deal 5 cards to each player.</li>
                 </ol>
@@ -336,7 +331,7 @@
                     </li>
                     <li><strong>Phase 3: End Phase</strong>
                         <ol>
-                            <li><strong>Discard (if needed):</strong> If >5 cards (due to unusual effects), discard to 5. Discards go to bottom of Main Deck. (Normally, Action Phase rules leave you at ≤5 cards).</li>
+                            <li><strong>Discard (if needed):</strong> If >5 cards, discard to 5. Discards go to bottom of Main Deck.</li>
                             <li><strong>Check for Victory:</strong> If a victory condition met, announce it. You win!</li>
                             <li>Check for end-of-turn effects (e.g., rotation tracking).</li>
                             <li>Turn ends. Play passes left.</li>
@@ -353,24 +348,25 @@
                         <ul>
                             <li><strong>Playing a Star Card:</strong> Place into your <strong class="key-term">Star Chart</strong>.</li>
                             <li><strong>Playing a Discovery Card:</strong> Attach to an incomplete Star in your <strong class="key-term">Star Chart</strong>.</li>
-                            <li><strong>Playing a Miracle or Disaster Card:</strong> Announce it.</li>
+                            <li><strong>Playing a Miracle, Enhancement, or Disaster Card:</strong> Announce it. (Enhancements typically attach per their text).</li>
                             <li><strong>Playing a Complete Solar System:</strong> Play 1 Star + required Discoveries from hand into <strong class="key-term">Star Chart</strong>.</li>
                             <li><strong>Playing Supernova Miracle Cards for Victory:</strong> If you hold all three, play simultaneously. If successful, you win. Meets Cosmic Cataclysm.</li>
                         </ul>
                     </li>
-                    <li><strong>The <strong class="key-term">Chain</strong> and Reactive Play (Miracle & Disaster Cards ONLY):</strong>
+                    <li><strong>The <strong class="key-term">Chain</strong> and Reactive Play (Miracle, Disaster, & Enhancement Cards ONLY):</strong>
                         <ul>
                             <li><strong>Starting a <strong class="key-term">Chain</strong>:</strong> Active player's play (CL1) doesn't resolve immediately. Opportunity for reactions.</li>
-                            <li><strong>Responding:</strong> Opponents (in turn order, left of active player first) may play <strong>one Miracle or Disaster card</strong> to respond. This is CL2, etc.
+                            <li><strong>Responding:</strong> Opponents (in turn order, left of active player first) may play <strong>one Miracle card, one Disaster card, or one Enhancement card</strong> from their hand to respond. This is CL2, etc.
                                 <ul>
-                                    <li><strong>Only Miracle or Disaster cards in a <strong class="key-term">Chain</strong>.</strong> No Stars, Discoveries, or Systems.</li>
-                                    <li>Hand size (6-card rule) <strong>does not restrict</strong> reactive plays.</li>
+                                    <li><strong>Only Miracle, Disaster, or Enhancement cards may be played into a <strong class="key-term">Chain</strong>.</strong> Star cards, Discovery cards, or groups like "Complete Solar Systems" cannot be played reactively.</li>
+                                    <li>Hand size (6-card rule) <strong>does not restrict</strong> reactive plays into a Chain.</li>
+                                    <li>Enhancement cards played into a Chain must still meet their play/attachment requirements upon resolution. If their target is invalid, they may fail to attach and be discarded.</li>
                                 </ul>
                             </li>
                             <li><strong>Continuing the <strong class="key-term">Chain</strong>:</strong> Priority passes for more reactions until all pass consecutively.</li>
                             <li><strong>Resolving the <strong class="key-term">Chain</strong>:</strong> Resolves LIFO (last card played resolves first, down to CL1).</li>
                             <li><strong>Important:</strong> No new plays/Chains while a <strong class="key-term">Chain</strong> is resolving.</li>
-                            <li><strong>Card Destination:</strong> Chained Miracles/Disasters go to bottom of Main Deck after resolving (unless text says otherwise).</li>
+                            <li><strong>Card Destination:</strong> Miracles and Disasters played in a Chain go to bottom of Main Deck after resolving. Enhancements attach to their target if valid upon resolution; otherwise, they are also placed on the bottom of the Main Deck.</li>
                             <li><strong>Impact on Hand Size:</strong> Reactive plays reduce hand size, possibly affecting your next Action Phase if hand drops below 6 after your draw. You don't "miss turns" (skip phases).</li>
                         </ul>
                     </li>
@@ -393,7 +389,7 @@
         </section>
 
         <footer>
-            <p>Starfall Game Rules &copy; [Your Name/Company Name] [Current Year]</p>
+            <p>Starfall Game Rules © Riley Horsham 2025</p>
         </footer>
     </div>
 
@@ -424,7 +420,7 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        // observer.unobserve(entry.target); // Optional: unobserve after first animation
+                        // observer.unobserve(entry.target); // Optional: unobserve after first time
                     }
                 });
             }, observerOptions);
